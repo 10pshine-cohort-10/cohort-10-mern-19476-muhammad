@@ -1,6 +1,7 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
 import { createUserTable } from '../modules/user.entity.js';
+import { logger } from './logger.config.js';
 
 dotenv.config();
 
@@ -16,9 +17,9 @@ const pool = new Pool({
 
 pool.connect((err, client, release) => {
     if (err) {
-        console.log(`Database connection error`);
+        logger.error(`Database connection error`);
     } else {
-        console.log('Database Connected successfully!');
+        logger.info('Database Connected successfully!');
         release();
     }
 });
@@ -26,8 +27,8 @@ pool.connect((err, client, release) => {
 export const initDB = async () => {
     try {
         await pool.query(createUserTable);
-        console.log('Tables initialized');
+        logger.info('Tables initialized');
     } catch (error) {
-        console.log('Error initiazing the database');
+        logger.error('Error initiazing the database');
     }
 };
