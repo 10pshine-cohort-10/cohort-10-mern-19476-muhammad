@@ -36,7 +36,7 @@ const startServer = async () => {
             logger.info(`Server Running on port ${PORT}`);
         });
     } catch (error) {
-        logger.error('Failed to start the server due to databse initialization error');
+        logger.error({err: error}, 'Failed to start the server due to database initialization error');
         process.exit(1);
     }
 };
