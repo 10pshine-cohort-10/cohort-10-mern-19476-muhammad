@@ -15,13 +15,8 @@ const pool = new Pool({
     database: process.env.DB_NAME,
 });
 
-pool.connect((err, client, release) => {
-    if (err) {
-        logger.error(`Database connection error`);
-    } else {
-        logger.info('Database Connected successfully!');
-        release();
-    }
+pool.on('error', (err) => {
+    logger.error({ err }, 'Unexpected error on idle database client')
 });
 
 export const initDB = async () => {
@@ -29,6 +24,7 @@ export const initDB = async () => {
         await pool.query(createUserTable);
         logger.info('Tables initialized');
     } catch (error) {
-        logger.error('Error initiazing the database');
+        logger.error({err: error }, 'Error initiazing the database');
+        throw error;
     }
 };

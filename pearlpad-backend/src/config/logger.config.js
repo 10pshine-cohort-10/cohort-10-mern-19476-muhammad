@@ -3,7 +3,7 @@ import pino from 'pino';
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 export const logger = pino({
-    level: process.LOG_LEVEL || (isDevelopment ? 'debug' : 'info'),
+    level: process.env.LOG_LEVEL || (isDevelopment ? 'debug' : 'info'),
     redact: {
         paths: ['req.headers.authorization', 'req.body.password', 'password'],
         censor: "***REDACTED***",

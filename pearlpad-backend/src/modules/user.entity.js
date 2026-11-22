@@ -4,7 +4,7 @@ export const User = {
         id: 'SERIAL PRIMARY KEY',
         first_name: 'VARCHAR(50) NOT NULL',
         last_name: 'VARCHAR(50) NOT NULL',
-        email: 'VARCHAR(75) NOT NULL',
+        email: 'VARCHAR(75) UNIQUE NOT NULL',
         password: 'TEXT NOT NULL',
         is_active: 'BOOLEAN DEFAULT FALSE NOT NULL',
         created_at: 'TIMESTAMP DEFAULT NOW()'
@@ -16,8 +16,8 @@ export const createUserTable = `
         id              SERIAL PRIMARY KEY,
         first_name      VARCHAR(50) NOT NULL,
         last_name       VARCHAR(50) NOT NULL,
-        email           VARCHAR(75) NOT NULL,
-        password        TEXT,
+        email           VARCHAR(75) UNIQUE NOT NULL,
+        password        TEXT NOT NULL,
         is_active       BOOLEAN DEFAULT FALSE NOT NULL,
         created_at      TIMESTAMP DEFAULT NOW()
     );
