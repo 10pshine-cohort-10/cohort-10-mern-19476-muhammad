@@ -4,6 +4,7 @@ import { initDB } from './config/db.config.js';
 import { httpLogger } from './middlewares/httpLogger.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { logger } from './config/logger.config.js';
+import userRouter from './routes/user.routes.js';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 });
 
 //All app routes will be initiated over here
+app.use('/api/v1/users', userRouter);
 
 app.use((req, res, next) => {
     const safePath = req.originalUrl.split('?')[0];

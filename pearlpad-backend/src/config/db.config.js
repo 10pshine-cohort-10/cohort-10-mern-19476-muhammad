@@ -1,6 +1,6 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
-import { createUserTable } from '../modules/user.entity.js';
+import { createUserTable } from '../modules/users/user.entity.js';
 import { logger } from './logger.config.js';
 
 dotenv.config();
@@ -28,3 +28,5 @@ export const initDB = async () => {
         throw error;
     }
 };
+
+export default pool;
