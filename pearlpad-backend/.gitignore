@@ -1,0 +1,19 @@
+#env file
+.env
+
+#node-modules
+node_modules/
+
+# Build outputs
+build/
+dist/
+
+# Test coverage & SonarQube artifacts
+coverage/
+.scannerwork/
+.sonar/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+*.log
